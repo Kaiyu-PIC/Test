@@ -32,9 +32,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       
-      - uses: actions/github-script@v4
-        with:
-          script: |
-          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+      - name: Get release or tag (SHA)
+        run : echo "tag=${GITHUB_REF#refs/*/}"
 
