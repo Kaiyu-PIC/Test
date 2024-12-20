@@ -42,9 +42,11 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - name: Get latest tag
-        id: latest_tag
-        run: |
-          echo $(git describe --abbrev=0 --tags)
+    
+          
+     - name: set up env var
+        run: echo "TAG=$(echo git describe --exact-match --tags $(git log -n1 --pretty='%h'))" >> $GITHUB_ENV
+     - name: use env var
+        run: echo ${{ env.TAG }}
 
 
