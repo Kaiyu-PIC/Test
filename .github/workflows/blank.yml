@@ -19,8 +19,11 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
   # This workflow contains a single job called "build"
   build:
+    #Run this EXCEPT non-merged closed PRs
+    if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -38,3 +41,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Get latest tag
+        id: latest_tag
+        run: |
+          latest_tag=$(git describe --abbrev=0 --tags)
+          latest_tag=$(echo $latest_tag | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+          echo "::set-output name=latest_tag::$latest_tag"
+
