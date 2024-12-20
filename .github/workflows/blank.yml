@@ -5,8 +5,8 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  #push:
-  #  branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   pull_request:
     branches:
     - main
@@ -46,6 +46,5 @@ jobs:
         id: latest_tag
         run: |
           latest_tag=$(git describe --abbrev=0 --tags)
-          latest_tag=$(echo $latest_tag | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-          echo "::set-output name=latest_tag::$latest_tag"
+
 
