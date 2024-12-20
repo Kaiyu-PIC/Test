@@ -40,13 +40,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
-
-    
-          
-     - name: set up env var
+          echo test, and deploy your project.  
+      - name: set up env var
         run: echo "TAG=$(echo git describe --exact-match --tags $(git log -n1 --pretty='%h'))" >> $GITHUB_ENV
-     - name: use env var
+      - name: use env var
         run: echo ${{ env.TAG }}
 
 
