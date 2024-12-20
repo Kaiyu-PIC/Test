@@ -31,10 +31,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      
       - uses: actions/github-script@v7
-
-      - name: GitHub Tag Name example
-        run: |
+        with:
+          script: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
 
