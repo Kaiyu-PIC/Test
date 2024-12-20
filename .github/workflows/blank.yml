@@ -32,7 +32,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v4
         with:
           script: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
