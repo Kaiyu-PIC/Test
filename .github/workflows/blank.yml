@@ -33,5 +33,5 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Get release or tag (SHA)
-        run : echo "tag=${GITHUB_REF#refs/*/}"
+        run : echo $RELEASE_VERSION
 
