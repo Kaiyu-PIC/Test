@@ -41,9 +41,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.  
-      - name: set up env var
-        run: echo "TAG=$(echo git describe --exact-match --tags $(git log -n1 --pretty='%h'))" >> $GITHUB_ENV
-      - name: use env var
-        run: echo ${{ env.TAG }}
+          
+      - name: "Set latest tag"
+        id: set-latest-tag
+        run: echo "latest_tag=$(git tag | sort --version-sort | tail -n1)" >> $GITHUB_ENV
+      
+      - name: "Tag Docker image as latest"
+        id: tag-as-latest
+        if: ${{ github.ref_name == env.latest_tag }}
+        run: |
 
 
